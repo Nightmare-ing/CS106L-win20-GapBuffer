@@ -213,7 +213,6 @@ void TestHarness::insert_move_mixed() {
  * Tests the fill constructor by creating GapBuffer of 200 elements
 */
 void TestHarness::fill_constructor_test_basic() {
-    QSKIP("Remove this statement once you've implemented fill constructor.");
     GapBuffer buf(200, 'c');
     for (int i = 0; i < 200; ++i) {
         QVERIFY(buf.at(i) == 'c');
@@ -226,7 +225,6 @@ void TestHarness::fill_constructor_test_basic() {
  * Tests insertion to ensure that is still possible.
  */
 void TestHarness::fill_constructor_edge() {
-    QSKIP("Remove this statement once you've implemented fill constructor.");
     GapBuffer buf_zero(0, '%');
     QVERIFY(buf_zero.size() == 0);
     QVERIFY(buf_zero.cursor_index() == 0);
@@ -250,7 +248,6 @@ void TestHarness::fill_constructor_edge() {
 }
 
 void TestHarness::const_test() {
-    QSKIP("Remove this statement once you've implemented const functions.");
     const GapBuffer buf(15, 'c');
     QVERIFY(buf.at(10) == 'c');
     QVERIFY(buf.size() == 15);

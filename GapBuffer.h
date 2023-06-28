@@ -60,8 +60,8 @@ private:
     size_type _buffer_size; // uses array_index
     size_type _cursor_index; // uses array_index
     size_type _gap_size;
-    size_type to_external_index(size_type array_index);
-    size_type to_array_index(size_type external_index);
+    size_type to_external_index(size_type array_index) const;
+    size_type to_array_index(size_type external_index) const;
     void move_to_left_of_buffer(size_type num);
 };
 
@@ -107,21 +107,34 @@ void GapBuffer::delete_at_cursor() {
 }
 
 typename GapBuffer::reference GapBuffer::get_at_cursor() {
-    if (_cursor_index == _logical_size) {
-        throw std::string("No element after the cursor");
-    }
-    return _elems[_cursor_index];
+    return const_cast<reference>(static_cast<const GapBuffer*>(this)->get_at_cursor());
 }
 
 typename GapBuffer::reference GapBuffer::at(size_type pos) {
+    return const_cast<reference>(static_cast<const GapBuffer*>(this)->at(pos));
+}
+
+// Part 2 implementation
+GapBuffer::const_reference GapBuffer::at(size_type pos) const {
     if (pos >= _logical_size || pos < 0) {
         throw std::string("external index out of bounds");
     }
     return _elems[to_array_index(pos)];
 }
 
+GapBuffer::const_reference GapBuffer::get_at_cursor() const {
+    if (_cursor_index == _logical_size) {
+        throw std::string("No element after the cursor");
+    }
+    return _elems[_cursor_index];
+}
+
 typename GapBuffer::size_type GapBuffer::size() const {
     return _logical_size;
+}
+
+GapBuffer::size_type GapBuffer::cursor_index() const {
+    return _cursor_index;
 }
 
 bool GapBuffer::empty() const {
@@ -187,7 +200,7 @@ void GapBuffer::debug() const {
     std::cout << "]" << std::endl;
 }
 
-typename GapBuffer::size_type GapBuffer::to_external_index(size_type array_index)  {
+typename GapBuffer::size_type GapBuffer::to_external_index(size_type array_index) const {
     if (array_index < _cursor_index) {
         return array_index;
     } else if (array_index >= _cursor_index + _gap_size){
@@ -197,7 +210,7 @@ typename GapBuffer::size_type GapBuffer::to_external_index(size_type array_index
     }
 }
 
-typename GapBuffer::size_type GapBuffer::to_array_index(size_type external_index)  {
+typename GapBuffer::size_type GapBuffer::to_array_index(size_type external_index) const  {
     if (external_index < _cursor_index) {
         return external_index;
     } else {
