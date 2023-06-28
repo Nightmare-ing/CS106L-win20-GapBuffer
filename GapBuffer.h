@@ -65,33 +65,67 @@ private:
     void move_to_left_of_buffer(size_type num);
 };
 
-GapBuffer::GapBuffer() {
+GapBuffer::GapBuffer() :
+    _logical_size(0),
+    _buffer_size(kDefaultSize),
+    _cursor_index(0),
+    _gap_size(kDefaultSize) {
 
+    _elems = new char[_buffer_size];
 }
 
-GapBuffer::GapBuffer(size_type count, const value_type& val) {
-    (void) count, (void) val;
+GapBuffer::GapBuffer(size_type count, const value_type& val) :
+    _logical_size(count),
+    _buffer_size(2 * count),
+    _cursor_index(_logical_size),
+    _gap_size(_buffer_size - _logical_size){
+
+    _elems = new char[_buffer_size];
+    for (size_t i = 0; i < count; ++i) {
+        _elems[i] = val;
+    }
 }
 
 void GapBuffer::insert_at_cursor(const_reference element) {
-    (void) element;
+    if (_gap_size == 0) {
+        reserve(2 * _buffer_size);
+    }
+
+    _elems[_cursor_index] = element;
+    ++_cursor_index;
+    ++_logical_size;
+    --_gap_size;
 }
 
 void GapBuffer::delete_at_cursor() {
-
+    if (_cursor_index == 0) {
+        return;
+    }
+    --_logical_size;
+    --_cursor_index;
+    ++_gap_size;
 }
 
 typename GapBuffer::reference GapBuffer::get_at_cursor() {
-    return _elems[0]; // only here so it compiles
+    if (_cursor_index == _logical_size) {
+        throw std::string("No element after the cursor");
+    }
+    return _elems[_cursor_index];
 }
 
 typename GapBuffer::reference GapBuffer::at(size_type pos) {
-    (void) pos; // remove after implementing this function
-    return _elems[0]; // only here so it compiles
+    if (pos >= _logical_size || pos < 0) {
+        throw std::string("external index out of bounds");
+    }
+    return _elems[to_array_index(pos)];
 }
 
 typename GapBuffer::size_type GapBuffer::size() const {
-    return 0; // only here so it compiles
+    return _logical_size;
+}
+
+bool GapBuffer::empty() const {
+    return _logical_size == 0;
 }
 
 
@@ -130,6 +164,7 @@ void GapBuffer::reserve(size_type new_size) {
     std::move(_elems+ _cursor_index, _elems + _buffer_size,
               new_elems + _cursor_index + new_gap_size);
     _buffer_size = new_size;
+    delete[] _elems;
     _elems = std::move(new_elems);
     _gap_size = new_gap_size;
 }

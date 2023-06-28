@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 9.0.2, 2023-06-28T11:50:12. -->
+<!-- Written by QtCreator 9.0.2, 2023-06-28T19:03:54. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -68,7 +68,21 @@
     <value type="bool" key="AutoTest.Framework.QtQuickTest">true</value>
     <value type="bool" key="AutoTest.Framework.QtTest">true</value>
    </valuemap>
-   <valuemap type="QVariantMap" key="AutoTest.CheckStates"/>
+   <valuemap type="QVariantMap" key="AutoTest.CheckStates">
+    <value type="Qt::CheckState" key="1@/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/tst_testharness.cpp:TestHarness">Checked</value>
+    <value type="Qt::CheckState" key="1@/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/tst_testharness.cpp:const_test">Checked</value>
+    <value type="Qt::CheckState" key="1@/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/tst_testharness.cpp:edit_at">Checked</value>
+    <value type="Qt::CheckState" key="1@/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/tst_testharness.cpp:fill_constructor_edge">Checked</value>
+    <value type="Qt::CheckState" key="1@/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/tst_testharness.cpp:fill_constructor_test_basic">Checked</value>
+    <value type="Qt::CheckState" key="1@/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/tst_testharness.cpp:insert_at_test_basic">Checked</value>
+    <value type="Qt::CheckState" key="1@/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/tst_testharness.cpp:insert_delete_mixed_hard">Checked</value>
+    <value type="Qt::CheckState" key="1@/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/tst_testharness.cpp:insert_move_cursor_at_basic">Checked</value>
+    <value type="Qt::CheckState" key="1@/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/tst_testharness.cpp:insert_move_mixed">Checked</value>
+    <value type="Qt::CheckState" key="1@/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/tst_testharness.cpp:insert_operator_test_basic">Checked</value>
+    <value type="Qt::CheckState" key="1@/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/tst_testharness.cpp:insert_then_delete">Checked</value>
+    <value type="Qt::CheckState" key="1@/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/tst_testharness.cpp:move_cursor_jump">Checked</value>
+    <value type="Qt::CheckState" key="1@/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/tst_testharness.cpp:reserve_test_basic">Checked</value>
+   </valuemap>
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>
    <valuemap type="QVariantMap" key="ClangTools">
@@ -236,12 +250,14 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/GapBufferPart1.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/Users/smile/Desktop/CS106L-win2020/GapBuffer-nontemplate/GapBufferPart1.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/smile/Desktop/CS106L-win2020/build-GapBufferPart1-Qt_6_4_2_for_macOS-Debug/GapBufferPart1.app/Contents/MacOS</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
