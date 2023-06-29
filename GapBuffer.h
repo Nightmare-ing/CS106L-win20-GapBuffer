@@ -41,13 +41,13 @@ public:
     // we don't write these in our class declaration since they are non-members, non-friends
     // nevertheless, just so you see a clear outline of what you have to do, we put them here as comments.
 
-    // ostream& operator<<(ostream& os, const GapBuffer& buf);
-    // bool operator==(const GapBuffer& left, const GapBuffer& right);
-    // bool operator!=(const GapBuffer& left, const GapBuffer& right);
-    // bool operator<(const GapBuffer& left, const GapBuffer& right);
-    // bool operator>(const GapBuffer& left, const GapBuffer& right);
-    // bool operator<=(const GapBuffer& left, const GapBuffer& right);
-    // bool operator>=(const GapBuffer& left, const GapBuffer& right);
+//    ostream& operator<<(ostream& os, const GapBuffer& buf);
+//    bool operator==(const GapBuffer& left, const GapBuffer& right);
+//    bool operator!=(const GapBuffer& left, const GapBuffer& right);
+//    bool operator<(const GapBuffer& left, const GapBuffer& right);
+//    bool operator>(const GapBuffer& left, const GapBuffer& right);
+//    bool operator<=(const GapBuffer& left, const GapBuffer& right);
+//    bool operator>=(const GapBuffer& left, const GapBuffer& right);
 
     /* Implemented for you */
     void move_cursor(int num);
@@ -115,14 +115,14 @@ typename GapBuffer::reference GapBuffer::at(size_type pos) {
 }
 
 // Part 2 implementation
-GapBuffer::const_reference GapBuffer::at(size_type pos) const {
+typename GapBuffer::const_reference GapBuffer::at(size_type pos) const {
     if (pos >= _logical_size || pos < 0) {
         throw std::string("external index out of bounds");
     }
     return _elems[to_array_index(pos)];
 }
 
-GapBuffer::const_reference GapBuffer::get_at_cursor() const {
+typename GapBuffer::const_reference GapBuffer::get_at_cursor() const {
     if (_cursor_index == _logical_size) {
         throw std::string("No element after the cursor");
     }
@@ -133,7 +133,7 @@ typename GapBuffer::size_type GapBuffer::size() const {
     return _logical_size;
 }
 
-GapBuffer::size_type GapBuffer::cursor_index() const {
+typename GapBuffer::size_type GapBuffer::cursor_index() const {
     return _cursor_index;
 }
 
@@ -144,10 +144,63 @@ bool GapBuffer::empty() const {
 
 // Implement Part 3 functions here
 // Members and non-member non-friends.
+typename GapBuffer::const_reference GapBuffer::operator [](size_type pos) const {
+    return _elems[to_array_index(pos)];
+}
 
+typename GapBuffer::reference GapBuffer::operator [](size_type pos) {
+    return const_cast<reference>(static_cast<const GapBuffer*>(this)->operator [](pos));
+}
 
+std::ostream& operator <<(std::ostream& os, const GapBuffer& buf) {
+    os << "{";
 
+    if (buf.size() == 0) {
+        os << "^";
+    }
 
+    for (GapBuffer::size_type i = 0; i < buf.size(); ++i) {
+        if (buf.cursor_index() == i) {
+            os << "^";
+        }
+        os << buf[i];
+        if (i != buf.size() - 1) {
+            os << ", ";
+        }
+    }
+
+    if (buf.cursor_index() == buf.size()) {
+        os << "^";
+    }
+
+    os << "}";
+
+    return os;
+}
+
+//bool operator ==(const GapBuffer& left, const GapBuffer& right) const {
+//    return std::equal(left.begin(), left.end(), right.begin());
+//}
+
+//bool operator !=(const GapBuffer& left, const GapBuffer& right) const {
+//    return !(left == right);
+//}
+
+//bool operator <(const GapBuffer& left, const GapBuffer& right) const {
+//    return std::lexicographical_compare(left.begin(), left.end(), right.begin(), right.end());
+//}
+
+//bool operator >(const GapBuffer& left, const GapBuffer& right) const {
+//    return !(left < right);
+//}
+
+//bool operator <=(const GapBuffer& left, const GapBuffer& right) const {
+//    return (left < right) || (left == right);
+//}
+
+//bool operator >=(const GapBuffer& left, const GapBuffer& right) const {
+//    return (left > right) || (left == right)
+//}
 
 /* We've implemented these for you, do not edit! */
 void GapBuffer::move_cursor(int delta) {

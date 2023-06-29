@@ -182,7 +182,6 @@ void TestHarness::move_cursor_jump() {
  * QSKIP prevents compiler errors even if you haven't implemented it.
  */
 void TestHarness::insert_operator_test_basic() {
-    QSKIP("This statement skips this test. Remove after implementing operators.");
     GapBuffer buf;
     for (char ch = 'a'; ch < 'g'; ch++) {
         buf.insert_at_cursor(ch);
@@ -191,6 +190,7 @@ void TestHarness::insert_operator_test_basic() {
     for (char ch = 'a'; ch < 'g'; ch++) {
         QVERIFY(ch == buf[ch - 'a']);
     }
+    cout << buf << endl;
 }
 
 /*
